@@ -31,16 +31,20 @@ Matrix corresponding a linear combination of basis functions.
 \author{\email{hbk5086@psu.edu}}
 \examples{
 library(VGAM)
+set.seed(1)
 
-coefs <- VGAM::rgpd(101, location = 0, scale = 1, shape = 0.8)
-coefs[sample(seq_along(coefs), 100, replace = FALSE)] <- 0
+nbasis <- 40
+coefs <- VGAM::rgpd(nbasis^2+1, location = 1, scale = 10, shape = 0.75)
+coefs[sample(seq_along(coefs), round(length(coefs)*.3), replace = FALSE)] <- 0
 
-true <- create.weibull.field(100, 2, 6, 10, rev = TRUE, reduce = TRUE)
-sim <- rfield(100, coefs = coefs, shape = 2, scale = 6, nbasis = 10,
-                type = "weibull", rev = TRUE, errvar = 0.5)
+b <- create.weibull.field(80, 1.5, 3, nbasis, rev = TRUE, reduce = TRUE)
+pure <- rfield(80, coefs = coefs, shape = 1.5, scale = 3, nbasis = nbasis,
+                type = "weibull", rev = TRUE, errvar = 0)
+noisy <- rfield(80, coefs = coefs, shape = 1.5, scale = 3, nbasis = nbasis,
+                type = "weibull", rev = TRUE, errvar = 1)
 
-par(mfrow = c(1,2))
-contour(true)
-contour(sim)
-
+par(mfrow = c(1,3))
+contour(b)
+contour(pure)
+contour(noisy)
 }
