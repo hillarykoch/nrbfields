@@ -1,0 +1,20 @@
+Package: nrbfields
+Type: Package
+Title: Regression-based surface approximation using non-radial basis functions 
+Version: 0.1.0
+Date: 2018-06-06
+Author: Hillary Koch
+Maintainer: <hillary.koch01@gmail.com>
+Description: Simulation from fields and penalized model fitting using GLMs.
+License: Artistic-2.0
+Encoding: UTF-8
+LazyData: true
+Imports:
+    glmnet,
+    graphics,
+    magrittr,
+    Rcpp (>= 0.12.16),
+    stats
+Suggests:
+    VGAM
+LinkingTo: Rcpp, RcppArmadillo
