@@ -5,3 +5,7 @@ cunfold <- function(Q) {
     .Call(`_nrbfields_cunfold`, Q)
 }
 
+copula_field <- function(gridlen, nbasis, l, b, rev) {
+    .Call(`_nrbfields_copula_field`, gridlen, nbasis, l, b, rev)
+}
+

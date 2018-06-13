@@ -17,9 +17,25 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// copula_field
+arma::cube copula_field(int gridlen, int nbasis, int l, arma::mat b, bool rev);
+RcppExport SEXP _nrbfields_copula_field(SEXP gridlenSEXP, SEXP nbasisSEXP, SEXP lSEXP, SEXP bSEXP, SEXP revSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type gridlen(gridlenSEXP);
+    Rcpp::traits::input_parameter< int >::type nbasis(nbasisSEXP);
+    Rcpp::traits::input_parameter< int >::type l(lSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type b(bSEXP);
+    Rcpp::traits::input_parameter< bool >::type rev(revSEXP);
+    rcpp_result_gen = Rcpp::wrap(copula_field(gridlen, nbasis, l, b, rev));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_nrbfields_cunfold", (DL_FUNC) &_nrbfields_cunfold, 1},
+    {"_nrbfields_copula_field", (DL_FUNC) &_nrbfields_copula_field, 5},
     {NULL, NULL, 0}
 };
 
