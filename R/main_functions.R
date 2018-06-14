@@ -32,7 +32,8 @@ rfield <- function(gridlen, coefs,
         stop("copulaType and dependence parameter must be specified when copula = TRUE.")
     }
     
-    unfld <- cbind(1, mode3unfold(fieldlist))
+    # Unfold tensor into n^2 x nbasis^2 matrix, where n is the grid length
+    unfld <- cbind(1, cunfold(simplify2array(fieldlist)))
     sclfield <- unfld %*% coefs
     refold <- matrix(sclfield, nrow = gridlen)
     if(errtype == "gaussian"){
