@@ -14,16 +14,19 @@ This collection of functions can be used to generate fields of asymmetric basis 
 \usage{
 create.weibull.basis(gridlen, shape, scale, nbasis, rev = FALSE, copula = FALSE, copulaType = NULL, param = NULL)
 create.gamma.basis(gridlen, shape, rate, nbasis, rev = FALSE,  copula = FALSE, copulaType = NULL, param = NULL))
+create.lognormal.basis(gridlen, meanlog, sdlog, nbasis, rev = FALSE,  copula = FALSE, copulaType = NULL, param = NULL))
 create.gamma.basis(gridlen, meanlog, sdlog, nbasis, rev = FALSE,  copula = FALSE, copulaType = NULL, param = NULL))
 create.weibull.field(gridlen, shape, scale, nbasis, rev=FALSE, reduce = FALSE, copula = FALSE, copulaType = NULL, param = NULL))
 create.gamma.field(gridlen, shape, rate, nbasis, rev = FALSE, reduce = FALSE, copula = FALSE, copulaType = NULL, param = NULL))
-create.gamma.field(gridlen, meanlog, sdlog, nbasis, rev = FALSE, reduce = FALSE, copula = FALSE, copulaType = NULL, param = NULL))
+create.lognormal.field(gridlen, meanlog, sdlog, nbasis, rev = FALSE, reduce = FALSE, copula = FALSE, copulaType = NULL, param = NULL))
 }
 \arguments{
   \item{gridlen}{Length of regular grid.}
   \item{shape}{Shape parameter of gamma of weibull distributions.}
-  \item{scale}{Scale parameter of weibull distribution.}
   \item{rate}{Rate parameter of gamma distribution.}
+  \item{scale}{Scale parameter of weibull distribution.}
+  \item{meanlog}{Mean of the normal distribution on the log scale.}
+  \item{sdlog}{Standard deviation of the normal distribution on the log scale.}
   \item{nbasis}{Number of basis functions to create in 1 dimension (this gets squared if making a field).}
   \item{rev}{Logical. Should the direction of the basis functions be reverse? In 1-D, this correspond to letting y=f(-x).}
   \item{reduce}{Logical. Should list of 2-D bases be summed into one field?}
@@ -40,6 +43,6 @@ For create.basis when copula=FALSE, a gridlen by nbasis basis matrix is returned
 \author{\email{hbk5086@psu.edu}}
 \seealso{\code{\link[copula]{archmCopula}}}
 \examples{
-2dfield <- create.gamma.field(100, 3, .5, 10, reduce = TRUE)
-contour(2dfield)
+twodfield <- create.gamma.field(100, 3, .5, 10, reduce = TRUE)
+contour(twodfield)
 }

@@ -55,15 +55,14 @@ contour(b)
 contour(pure)
 contour(noisy)
 
-coefs2 <- VGAM::rgpd(nbasis^2+1, location = 1, scale = 10, shape = 0.85)
-coefs2[sample(seq_along(coefs), round(length(coefs)*.25), replace = FALSE)] <- 0
+coefs2 <- VGAM::rgpd(nbasis^2+1, location = 0, scale = 5, shape = 0.65)
 b2 <- create.lognormal.field(100, .5, 3, nbasis, rev=TRUE,reduce=TRUE, copula = TRUE, copulaType = "frank", param = -4)
 pure2 <- rfield(80, coefs = coefs2, meanlog = .5, sdlog = 3, nbasis = nbasis,
                 type = "lognormal", rev = TRUE, copula = TRUE, copulaType = "frank", param = -4, errvar = 0)
 noisy2 <- rfield(80, coefs = coefs2, meanlog = .5, sdlog = 3, nbasis = nbasis,
-                type = "lognormal", rev = TRUE,  copula = TRUE, copulaType = "frank", param = -4, errvar = 1)
-                
-contour(b2)
-contour(pure2)
-contour(noisy2)
+                type = "lognormal", rev = TRUE,  copula = TRUE, copulaType = "frank", param = -4, errvar = .5)
+
+image(b2^.3, col=colorRampPalette(c("white","blue"))(256), useRaster=TRUE)
+image(pure2^.3, col=colorRampPalette(c("white","blue"))(256), useRaster=TRUE)
+image(noisy2^.3, col=colorRampPalette(c("white","blue"))(256), useRaster=TRUE)
 }
