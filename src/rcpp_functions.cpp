@@ -7,7 +7,7 @@ using namespace RcppArmadillo;
 // [[Rcpp::depends(RcppArmadillo)]]
 // [[Rcpp::plugins(cpp11)]]
 
-
+// Unfold tensor into matrix for regression-type operations
 // [[Rcpp::export]]
 arma::mat cunfold(arma::cube Q) {
     int n = Q.slice(1).n_rows;

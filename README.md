@@ -2,4 +2,4 @@
 
 A work in progress.
 
-
+![bivariate_dependence](Lbasis_grid.png)
